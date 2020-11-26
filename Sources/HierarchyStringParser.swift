@@ -13,7 +13,7 @@ func parseHierarchyString(_ string: String) -> Array<HierarchyElement> {
         line, stop in
         
         depth = 0
-        for char in line.characters {
+        for char in line {
             if (char == "\t") {
                 depth += 1
             }else{
@@ -50,7 +50,7 @@ func parseHierarchyString(_ string: String) -> Array<HierarchyElement> {
             }
         }
         
-        let lineWithoutLeadingTabs = line[line.index(line.startIndex, offsetBy: depth) ..< line.endIndex]
+        let lineWithoutLeadingTabs = String(line[line.index(line.startIndex, offsetBy: depth) ..< line.endIndex])
         output.append(HierarchyElement(withIndex: index, parentIndex: parentIndex, depth: depth, birthOrder: birthOrder, caption: lineWithoutLeadingTabs))
         
         index += 1
