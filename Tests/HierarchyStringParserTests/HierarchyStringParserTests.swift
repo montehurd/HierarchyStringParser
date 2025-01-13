@@ -91,7 +91,7 @@ class HierarchyStringParserTests: XCTestCase {
     func testGetChildrenOfRoot() {
         let childrenOfRoot = parsedResultsArray.childrenOfIndex(-1)
         XCTAssertEqual(childrenOfRoot.map{$0.index}, [0,5,8,16,31,53])
-        XCTAssertEqual(childrenOfRoot.map{$0.caption}, ["breakfast","cats","vegetables","foods","states","colors"])
+        XCTAssertEqual(childrenOfRoot.map{$0.caption}, ["breakfast","catsX","vegetables","foods","states","colors"])
     }
     
     func testGetChildrenOfBreakfast() {
