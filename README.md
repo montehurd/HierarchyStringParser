@@ -1,32 +1,128 @@
-Simple Swift 3 package for parsing tabbed hierarchy strings
+A simple Swift package for parsing tabbed hierarchy strings.
 
-To add this parser as a dependency to a "Package.swift" manifest: 
+# Requirements
+- Swift 5.5 or later
+- iOS 13.0+ / macOS 10.15+
 
+# Installation
+
+To add this package as a dependency to your project:
+
+## Using Swift Package Manager (SPM):
+
+Update your Package.swift file:
 ```
+// swift-tools-version:5.5
+
 import PackageDescription
 
 let package = Package(
     name: "YourAppOrLibrary",
-    targets: [],
+    platforms: [
+        .iOS(.v13), .macOS(.v10_15)
+    ],
     dependencies: [
-        .Package(url: "https://github.com/montehurd/HierarchyStringParser.git", versions: Version(1,0,0)..<Version(2,0,0))
+        .package(url: "https://github.com/montehurd/HierarchyStringParser.git", from: "1.0.0")
+    ],
+    targets: [
+        .target(
+            name: "YourAppOrLibrary",
+            dependencies: ["HierarchyStringParser"]
+        )
     ]
 )
 ```
------
 
-After cloning, you can cd to "HierarchyStringParser", and run the following commands:
-- "swift test" will run the tests from the terminal
-- "swift package generate-xcodeproj" will generate an Xcode project (so you can run the parser's tests via Xcode
+## Alternatively, you can add the package directly in Xcode:
+1. Open your project in Xcode.
+2. Go to File > Add Packages.
+3. Enter the repository URL: https://github.com/montehurd/HierarchyStringParser.git
+4. Select the desired version (e.g., Up to Next Major Version starting with 1.0.0).
 
------
+# Usage
 
-Good Swift Package Manager tutorial: 
-http://evgenii.com/blog/distributing-your-library-with-swift-package-manager/)
+Use HierarchyStringParser to parse tabbed hierarchy strings. Example:
+```
+import HierarchyStringParser
 
-Simple commands for setting up a new package directory:
-- mkdir SomePackage
-- cd SomePackage
-- swift package init --type library 
+let input = """
+breakfast
+	cheese
+	eggs
+		white
+		brown
+cats
+	tabby
+	alley
+vegetables
+	carrots
+		orange
+	tomatoes
+		roma
+		heirloom
+		green
+			fried
+foods
+	bread
+		french
+		wheat
+		white
+		rye
+		oat
+	cheese
+		cheddar
+		swiss
+		american
+	vegetables
+		cucumber
+		tomato
+		potato
+states
+	florida
+		activities
+			swimming
+			running
+			being weird
+		counties
+			hernando
+			pinellas
+	minnesota
+		activities
+			freezing
+			being cold
+			fishing
+				lake
+					walleye
+					musky
+				river
+					bass
+		counties
+			aitkin
+			carlton
+colors
+	red
+		apples
+		cherries
+	green
+	blue
+	purple
+"""
+let result = parseHierarchyString(input)
+print(result) // Outputs a structured hierarchy of elements
+```
 
-("library" can also be "executable" in the init command above)
+# Testing the Package
+
+To test the package:
+1. Run the tests from the command line:
+   swift test
+2. Open the package in Xcode for testing and debugging:
+   open Package.swift
+
+# Continuous Integration (CI)
+
+This project includes a GitHub Actions workflow to automatically test the package on every push or pull request. To see the workflow file, check .github/workflows/swift.yml.
+
+# License
+
+MIT License
