@@ -4,7 +4,7 @@
 import Foundation
 
 //returns an array of HierarchyElements. string must use tab indentation to denote parentage. one entry per line. no blank lines.
-func parseHierarchyString(_ string: String) -> Array<HierarchyElement> {
+public func parseHierarchyString(_ string: String) -> Array<HierarchyElement> {
 
     var depth = 0, lastDepth = 0, birthOrder = 0, lastBirthOrder = 0, index = 0, parentIndex = 0, lastParentIndex = -1 //-1 denotes "root " element (the negative value is a reminder that an element has no parent)
     
