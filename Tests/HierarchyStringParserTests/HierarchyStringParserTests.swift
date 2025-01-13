@@ -132,27 +132,20 @@ colors
 	    XCTAssertFalse(parsedResultsArray.isIndex(53, descendantOfIndex: 31)) // Case 4
 	}
      
-    func testLargeStringParsingPerformance() {
-        //TODO: figure out why this was 3x faster in Obj-C...
-        let largeHierarchyString = Array(repeating: self.smallHierarchyString, count: 1000).joined(separator: "")
-        self.measure {
-            /*let results:Array<HierarchyElement>*/_ = parseHierarchyString(largeHierarchyString)
-            /*
-             for thisElement in results {
-                print(thisElement)
-             }
-             */
-        }
-    }
-    
-    func testLargeStringGetChildrenPerformance() {
-        let largeHierarchyString = Array(repeating: self.smallHierarchyString, count: 1000).joined(separator: "")
-        let results:Array<HierarchyElement> = parseHierarchyString(largeHierarchyString)
-        
-        self.measure {
-            _ = results.childrenOfIndex(1000)
-        }
-    }
+	func testLargeStringParsingPerformance() {
+	    let largeHierarchyString = String(repeating: smallHierarchyString, count: 1000)
+	    self.measure {
+	        _ = parseHierarchyString(largeHierarchyString)
+	    }
+	}
+
+	func testLargeStringGetChildrenPerformance() {
+	    let largeHierarchyString = String(repeating: smallHierarchyString, count: 1000)
+	    let results: [HierarchyElement] = parseHierarchyString(largeHierarchyString)
+	    self.measure {
+	        _ = results.childrenOfIndex(1000)
+	    }
+	}
 
     static var allTests : [(String, (HierarchyStringParserTests) -> () throws -> Void)] {
         return [
