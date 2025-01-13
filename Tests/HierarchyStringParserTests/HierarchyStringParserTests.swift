@@ -10,68 +10,69 @@ class HierarchyStringParserTests: XCTestCase {
         
     override func setUp() {
         super.setUp()
-        
-        let smallHierarchyString = ""
-        + "breakfast"
-            + "\n\tcheese"
-            + "\n\teggs"
-                + "\n\t\twhite"
-                + "\n\t\tbrown"
-        + "\ncats"
-            + "\n\ttabby"
-            + "\n\talley"
-        + "\nvegetables"
-            + "\n\tcarrots"
-                + "\n\t\torange"
-            + "\n\ttomatoes"
-                + "\n\t\troma"
-                + "\n\t\theirloom"
-                + "\n\t\tgreen"
-                    + "\n\t\t\tfried"
-        + "\nfoods"
-            + "\n\tbread"
-                + "\n\t\tfrench"
-                + "\n\t\twheat"
-                + "\n\t\twhite"
-                + "\n\t\trye"
-                + "\n\t\toat"
-            + "\n\tcheese"
-                + "\n\t\tcheddar"
-                + "\n\t\tswiss"
-                + "\n\t\tamerican"
-            + "\n\tvegetables"
-                + "\n\t\tcucumber"
-                + "\n\t\ttomato"
-                + "\n\t\tpotato"
-        + "\nstates"
-            + "\n\tflorida"
-                + "\n\t\tactivities"
-                    + "\n\t\t\tswimming"
-                    + "\n\t\t\trunning"
-                    + "\n\t\t\tbeing weird"
-                + "\n\t\tcounties"
-                    + "\n\t\t\thernando"
-                    + "\n\t\t\tpinellas"
-            + "\n\tminnesota"
-                + "\n\t\tactivities"
-                    + "\n\t\t\tfreezing"
-                    + "\n\t\t\tbeing cold"
-                    + "\n\t\t\tfishing"
-                        + "\n\t\t\t\tlake"
-                            + "\n\t\t\t\t\twalleye"
-                            + "\n\t\t\t\t\tmusky"
-                        + "\n\t\t\t\triver"
-                            + "\n\t\t\t\t\tbass"
-                + "\n\t\tcounties"
-                    + "\n\t\t\taitkin"
-                    + "\n\t\t\tcarlton"
-        + "\ncolors"
-            + "\n\tred"
-                + "\n\t\tapples"
-                + "\n\t\tcherries"
-            + "\n\tgreen"
-            + "\n\tblue"
-            + "\n\tpurple"
+
+        let smallHierarchyString = """
+breakfast
+	cheese
+	eggs
+		white
+		brown
+cats
+	tabby
+	alley
+vegetables
+	carrots
+		orange
+	tomatoes
+		roma
+		heirloom
+		green
+			fried
+foods
+	bread
+		french
+		wheat
+		white
+		rye
+		oat
+	cheese
+		cheddar
+		swiss
+		american
+	vegetables
+		cucumber
+		tomato
+		potato
+states
+	florida
+		activities
+			swimming
+			running
+			being weird
+		counties
+			hernando
+			pinellas
+	minnesota
+		activities
+			freezing
+			being cold
+			fishing
+				lake
+					walleye
+					musky
+				river
+					bass
+		counties
+			aitkin
+			carlton
+colors
+	red
+		apples
+		cherries
+	green
+	blue
+	purple
+"""
         
         XCTAssertNotNil(smallHierarchyString)
         
