@@ -12,8 +12,6 @@ To add this package as a dependency to your project:
 
 Update your Package.swift file:
 ```
-// swift-tools-version:5.5
-
 import PackageDescription
 
 let package = Package(
@@ -115,9 +113,9 @@ print(result) // Outputs a structured hierarchy of elements
 
 To test the package:
 1. Run the tests from the command line:
-   swift test
+   `swift test`
 2. Open the package in Xcode for testing and debugging:
-   open Package.swift
+   `open Package.swift`
 
 # Continuous Integration (CI)
 
