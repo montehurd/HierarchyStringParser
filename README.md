@@ -119,7 +119,7 @@ To test the package:
 
 # Continuous Integration (CI)
 
-This project includes a GitHub Actions workflow to automatically test the package on every push or pull request. To see the workflow file, check .github/workflows/swift.yml.
+This project includes a GitHub Actions workflow to automatically test the package on every push or pull request. To see the workflow file, check `.github/workflows/swift.yml`
 
 # License
 
