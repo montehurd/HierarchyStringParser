@@ -12,21 +12,13 @@ func parseHierarchyString(_ string: String) -> Array<HierarchyElement> {
     string.enumerateLines {
         line, stop in
         
-        depth = 0
-        for char in line {
-            if (char == "\t") {
-                depth += 1
-            }else{
-                break
-            }
-        }
+        depth = line.prefix(while: { $0 == "\t" }).count
+
 //TODO: add assert here if blank line?
 
         //make sure the nesting is by increments of one
 //TODO: add assert here ensuring if Depth is > than lastDepth that it is exactly 1 greater?
-        if (depth > lastDepth){
-            depth = lastDepth + 1
-        }
+        depth = min(depth, lastDepth + 1)
         
         if (depth == lastDepth){
             //last item was a sibling, so use same parent index and increment birth order
@@ -38,20 +30,27 @@ func parseHierarchyString(_ string: String) -> Array<HierarchyElement> {
             birthOrder = 1
         }else if (depth < lastDepth){
             
-            //tab depth decreased, so find last sibling and use same parent id and increment birth order
-            //back up to the previous element (the -2 part) because no need to examine the last item as its  is deeper and thus can't be the last sibling
-            for i in stride(from: output.count-2, to: -1, by: -1){
-                let element = output[i]
-                if (element.depth == depth) {
+            // tab depth decreased, so find last sibling and use same parent id and increment birth order
+            // back up to the previous element (the -2 part) because no need to examine the last item as it's deeper and thus can't be the last sibling
+            if depth < lastDepth {
+                // Find the last sibling and use the same parent index, then increment birth order
+                if let element = output.dropLast().last(where: { $0.depth == depth }) {
                     parentIndex = element.parentIndex
                     birthOrder = element.birthOrder + 1
-                    break
                 }
             }
         }
         
-        let lineWithoutLeadingTabs = String(line[line.index(line.startIndex, offsetBy: depth) ..< line.endIndex])
-        output.append(HierarchyElement(withIndex: index, parentIndex: parentIndex, depth: depth, birthOrder: birthOrder, caption: lineWithoutLeadingTabs))
+        let lineWithoutLeadingTabs = String(line.dropFirst(depth))
+
+        let element = HierarchyElement(
+            withIndex: index,
+            parentIndex: parentIndex,
+            depth: depth,
+            birthOrder: birthOrder,
+            caption: lineWithoutLeadingTabs
+        )
+        output.append(element)
         
         index += 1
         lastDepth = depth
