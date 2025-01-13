@@ -11,15 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift-version: [ '5.6', '5.7', '5.8' ]
+        swift-version: [ '5.5', '5.6', '5.7' ]
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Set up Swift
-        uses: apple-actions/setup-swift@v1
+      - name: Set up Swift ${{ matrix.swift-version }}
+        uses: fwal/setup-swift@v1
         with:
           swift-version: ${{ matrix.swift-version }}
+
+      - name: Verify Swift Installation
+        run: swift --version
 
       - name: Build
         run: swift build
