@@ -124,23 +124,14 @@ colors
         XCTAssertEqual(siblingsOfWheat.map{$0.index}, [18,19,20,21,22])
         XCTAssertEqual(siblingsOfWheat.map{$0.caption}, ["french","wheat","white","rye","oat"])
     }
-    
-    func testIsDecendentOne() {
-        XCTAssertTrue(parsedResultsArray.isIndex(49, descendantOfIndex: 44))
-    }
-    
-    func testIsDecendentTwo() {
-        XCTAssertFalse(parsedResultsArray.isIndex(49, descendantOfIndex: 34))
-    }
-    
-    func testIsDecendentThree() {
-        XCTAssertFalse(parsedResultsArray.isIndex(30, descendantOfIndex: 29))
-    }
-    
-    func testIsDecendentFour() {
-        XCTAssertFalse(parsedResultsArray.isIndex(53, descendantOfIndex: 31))
-    }
-    
+
+	func testIsDescendent() {
+	    XCTAssertTrue(parsedResultsArray.isIndex(49, descendantOfIndex: 44))  // Case 1
+	    XCTAssertFalse(parsedResultsArray.isIndex(49, descendantOfIndex: 34)) // Case 2
+	    XCTAssertFalse(parsedResultsArray.isIndex(30, descendantOfIndex: 29)) // Case 3
+	    XCTAssertFalse(parsedResultsArray.isIndex(53, descendantOfIndex: 31)) // Case 4
+	}
+     
     func testLargeStringParsingPerformance() {
         //TODO: figure out why this was 3x faster in Obj-C...
         let largeHierarchyString = Array(repeating: self.smallHierarchyString, count: 1000).joined(separator: "")
@@ -171,10 +162,7 @@ colors
             ("testGetAncestryOfRiver", testGetAncestryOfRiver),
             ("testGetAncestryOfCherries", testGetAncestryOfCherries),
             ("testGetSiblingsOfWheat", testGetSiblingsOfWheat),
-            ("testIsDecendentOne", testIsDecendentOne),
-            ("testIsDecendentTwo", testIsDecendentTwo),
-            ("testIsDecendentThree", testIsDecendentThree),
-            ("testIsDecendentFour", testIsDecendentFour),
+            ("testIsDescendent", testIsDescendent),
             ("testLargeStringParsingPerformance", testLargeStringParsingPerformance),
             ("testLargeStringGetChildrenPerformance", testLargeStringGetChildrenPerformance),
         ]
