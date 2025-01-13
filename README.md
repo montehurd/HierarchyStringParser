@@ -1,12 +1,4 @@
-Simple Swift 3 package for parsing tabbed hierarchy strings.
-
------
-
-TODO: add details here
-
------
-
-Some useful Swift Package Manager bits... 
+Simple Swift 3 package for parsing tabbed hierarchy strings
 
 To add this parser as a dependency to a "Package.swift" manifest: 
 
