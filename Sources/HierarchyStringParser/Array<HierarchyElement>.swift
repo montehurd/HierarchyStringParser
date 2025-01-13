@@ -5,7 +5,7 @@ import Foundation
 
 extension Array where Element: HierarchyElement {
 
-    func childrenOfIndex(_ index: Int) -> [HierarchyElement] {
+    public func childrenOfIndex(_ index: Int) -> [HierarchyElement] {
         // When seeking root level "children" we have to check every item since we
         // have no depth differences we can use to safely bail out early.
         if index == -1 {
@@ -26,14 +26,14 @@ extension Array where Element: HierarchyElement {
         }
     }
     
-    func siblingsOfIndex(_ index: Int) -> [HierarchyElement] {
+    public func siblingsOfIndex(_ index: Int) -> [HierarchyElement] {
         if (index < 0){
             return []
         }
         return self.childrenOfIndex(self[index].parentIndex);
     }
     
-    func ancestryOfIndex(_ index: Int) -> [HierarchyElement] {
+    public func ancestryOfIndex(_ index: Int) -> [HierarchyElement] {
         var thisIndex = index;
         var output:Array = []
         repeat {
@@ -43,7 +43,7 @@ extension Array where Element: HierarchyElement {
         return output;
     }
     
-    func isIndex(_ indexOne: Int, descendantOfIndex indexTwo: Int) -> Bool {
+    public func isIndex(_ indexOne: Int, descendantOfIndex indexTwo: Int) -> Bool {
         let ancestors = self.ancestryOfIndex(indexOne);
         for thisElement in ancestors {
             if(thisElement.index == indexTwo){
