@@ -77,10 +77,10 @@ print("\n=== Children of 'foods' (index 16) ===")
 print(elements.childrenOfIndex(16))
 
 print("\n=== Siblings of 'wheat' bread (index 19) ===")
-print(elements.siblingsOfIndex(19))
+print(elements.siblingsOfIndex(19, inclusive: false))
 
 print("\n=== Ancestry of 'walleye' (index 46) ===")
-print(elements.ancestryOfIndex(46))
+print(elements.ancestryOfIndex(46, inclusive: false))
 
 print("\n=== Descendant Relationship Checks ===")
 print("Is 'bass' (index 49) a descendant of 'fishing' (index 44)? \(elements.isIndex(49, descendantOfIndex: 44))")
