@@ -76,4 +76,8 @@ extension Array where Element: HierarchyElement {
             !self.contains { $0.parentIndex == element.index }
         }
     }
+
+    public var flatDescription: String {
+        return self.map { $0.description.replacingOccurrences(of: "\n\t+", with: "\n", options: .regularExpression) }.joined()
+    }
 }
