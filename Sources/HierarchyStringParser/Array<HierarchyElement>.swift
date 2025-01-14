@@ -55,4 +55,25 @@ extension Array where Element: HierarchyElement {
         }
         return false;
     }
+
+    public func descendantsOfIndex(_ index: Int) -> [HierarchyElement] {
+        guard index >= 0 else { return [] }
+        return self.filter {
+            $0.index != index && isIndex($0.index, descendantOfIndex: index)
+        }
+    }
+
+    public var maxDepth: Int {
+        return self.map { $0.depth }.max() ?? 0
+    }
+
+    public func elementsAtDepth(_ depth: Int) -> [HierarchyElement] {
+        return self.filter { $0.depth == depth }
+    }
+
+    public func leafNodes() -> [HierarchyElement] {
+        return self.filter { element in
+            !self.contains { $0.parentIndex == element.index }
+        }
+    }
 }

@@ -3,7 +3,7 @@
 
 import Foundation
 
-public class HierarchyElement: CustomStringConvertible {
+public class HierarchyElement: CustomStringConvertible, Equatable {
     
     //index of this HierarchyElement in the array of hierarchy elements returned by the HierarchyStringParser
     public var index:Int
@@ -42,4 +42,9 @@ public class HierarchyElement: CustomStringConvertible {
                " birthOrder=\(birthOrder)"
 
     }
+
+    public static func == (lhs: HierarchyElement, rhs: HierarchyElement) -> Bool {
+        return lhs.index == rhs.index
+    }
+
 }
