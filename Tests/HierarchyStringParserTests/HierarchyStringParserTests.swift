@@ -121,17 +121,29 @@ colors
         XCTAssertEqual(ancestryOfCherries.map{$0.caption}, ["cherries","red","colors"])
     }
     
+    func testGetAncestryOfCherriesExclusive() {
+        let ancestryOfCherries = parsedResultsArray.ancestryOfIndex(56, inclusive: false);
+        XCTAssertEqual(ancestryOfCherries.map{$0.index}, [54,53])
+        XCTAssertEqual(ancestryOfCherries.map{$0.caption}, ["red","colors"])
+    }
+
     func testGetSiblingsOfWheat() {
         let siblingsOfWheat = parsedResultsArray.siblingsOfIndex(19);
         XCTAssertEqual(siblingsOfWheat.map{$0.index}, [18,19,20,21,22])
         XCTAssertEqual(siblingsOfWheat.map{$0.caption}, ["french","wheat","white","rye","oat"])
     }
 
+    func testGetSiblingsOfWheatExclusive() {
+        let siblingsOfWheat = parsedResultsArray.siblingsOfIndex(19, inclusive: false);
+        XCTAssertEqual(siblingsOfWheat.map{$0.index}, [18,20,21,22])
+        XCTAssertEqual(siblingsOfWheat.map{$0.caption}, ["french","white","rye","oat"])
+    }
+
 	func testIsDescendent() {
-	    XCTAssertTrue(parsedResultsArray.isIndex(49, descendantOfIndex: 44))  // Case 1
-	    XCTAssertFalse(parsedResultsArray.isIndex(49, descendantOfIndex: 34)) // Case 2
-	    XCTAssertFalse(parsedResultsArray.isIndex(30, descendantOfIndex: 29)) // Case 3
-	    XCTAssertFalse(parsedResultsArray.isIndex(53, descendantOfIndex: 31)) // Case 4
+	    XCTAssertTrue(parsedResultsArray.isIndex(49, descendantOfIndex: 44))
+	    XCTAssertFalse(parsedResultsArray.isIndex(49, descendantOfIndex: 34))
+	    XCTAssertFalse(parsedResultsArray.isIndex(30, descendantOfIndex: 29))
+	    XCTAssertFalse(parsedResultsArray.isIndex(53, descendantOfIndex: 31))
 	}
      
 	func testLargeStringParsingPerformance() {

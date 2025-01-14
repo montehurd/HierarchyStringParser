@@ -26,18 +26,21 @@ extension Array where Element: HierarchyElement {
         }
     }
     
-    public func siblingsOfIndex(_ index: Int) -> [HierarchyElement] {
+    public func siblingsOfIndex(_ index: Int, inclusive: Bool = true) -> [HierarchyElement] {
         if (index < 0){
             return []
         }
-        return self.childrenOfIndex(self[index].parentIndex);
+        let siblings = self.childrenOfIndex(self[index].parentIndex)
+        return inclusive ? siblings : siblings.filter { $0.index != index }
     }
-    
-    public func ancestryOfIndex(_ index: Int) -> [HierarchyElement] {
+
+    public func ancestryOfIndex(_ index: Int, inclusive: Bool = true) -> [HierarchyElement] {
         var thisIndex = index;
         var output:Array = []
         repeat {
-            output.append(self[thisIndex])
+            if inclusive || thisIndex != index {
+                output.append(self[thisIndex])
+            }
             thisIndex = self[thisIndex].parentIndex
         } while (thisIndex != -1);
         return output;
