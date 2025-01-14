@@ -32,15 +32,22 @@ public class HierarchyElement: CustomStringConvertible, Equatable {
         userData = nil
     }
     
-    public var description:String {
+    public var description: String {
+        formatDescription(withTabs: true)
+    }
+
+    private func formatDescription(withTabs: Bool) -> String {
         return "\n" +
-               "\(String(repeating: "\t", count: depth))" +
+               (withTabs ? String(repeating: "\t", count: depth) : "") +
                "\"\(caption)\"" +
                " index=\(index)" +
                " depth=\(depth)" +
                " parentIndex=\(parentIndex)" +
                " birthOrder=\(birthOrder)"
+    }
 
+    public func flatDescription() -> String {
+        return formatDescription(withTabs: false)
     }
 
     public static func == (lhs: HierarchyElement, rhs: HierarchyElement) -> Bool {
