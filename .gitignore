@@ -3,4 +3,5 @@
 /.swiftpm
 /Packages
 /*.xcodeproj
-/SampleProject
+/SampleProject/.build
+/SampleProject/Package.resolved
