@@ -33,6 +33,13 @@ public class HierarchyElement: CustomStringConvertible {
     }
     
     public var description:String {
-        return "\n\(index)\t|\(String(repeating: "\t", count: depth))\"\(caption)\" depth=\(depth) parentIndex=\(parentIndex) birthOrder=\(birthOrder)"
+        return "\n" +
+               "\(String(repeating: "\t", count: depth))" +
+               "\"\(caption)\"" +
+               " index=\(index)" +
+               " depth=\(depth)" +
+               " parentIndex=\(parentIndex)" +
+               " birthOrder=\(birthOrder)"
+
     }
 }

@@ -77,11 +77,13 @@ colors
         XCTAssertNotNil(smallHierarchyString)
         
         parsedResultsArray = parseHierarchyString(smallHierarchyString)
-        
-        //print(parsedResultsArray)
-        //for thisElement in parsedResultsArray {
-        //    print(thisElement)
-        //}
+
+        // print("------------------------")
+        // print(parsedResultsArray)
+        // print("------------------------")
+        // for thisElement in parsedResultsArray {
+        //     print(thisElement)
+        // }
     }
     
     override func tearDown() {
